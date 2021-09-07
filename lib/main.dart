@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -27,7 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final items = List<String>.generate(12, (i) => "${i + 1}月");
+  final items = List<String>.generate(12, (i) => "2021年 ${i + 1}月");
 
   @override
   Widget build(BuildContext context) {
@@ -36,16 +39,23 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Container(
-        width: double.infinity,
         child: ListView.builder(
           itemCount: items.length,
           itemBuilder: (context, index) {
-            return ListTile(
-              title: Text('${items[index]}'),
+            return Container(
+              decoration: new BoxDecoration(
+                border: new Border(
+                  bottom: new BorderSide(color: Colors.black, width: 2.0),
+                ),
+              ),
+              child: ListTile(
+                title: Text('${items[index]}'),
+              ),
             );
           },
+
         ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
