@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Month extends StatelessWidget {
   @override
@@ -16,15 +18,6 @@ class Month extends StatelessWidget {
 class MonthPage extends StatefulWidget {
   MonthPage({Key? key, required this.title}) : super(key: key);
 
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -36,11 +29,6 @@ class _MonthPageState extends State<MonthPage> {
 
   void _incrementCounter() {
     setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
       _counter++;
     });
   }
@@ -55,13 +43,22 @@ class _MonthPageState extends State<MonthPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                'You have pushed the button this many times:',
-              ),
-              Text(
-                '$_counter',
-                style: Theme.of(context).textTheme.headline4,
-              ),
+              ElevatedButton(
+                  onPressed: () async {
+                    print("firebase");
+                    // Firebase.initializeApp();
+                    await FirebaseFirestore.instance
+                        .collection('test_collection')
+                        // .document()
+                        .doc('test_collection')
+                        .set({
+                      'name': 'kato',
+                      'age': 20,
+                      'sex': 'male',
+                      'type': ['A', 'B']
+                    });
+                  },
+                  child: Text('save firebase'))
             ],
           ),
         ),
