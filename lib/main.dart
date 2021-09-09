@@ -85,6 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     child: ListTile(
                       title: Text('${items[index]}'),
+                      trailing: Icon(Icons.arrow_forward_ios),
                     ),
                   );
                 },
