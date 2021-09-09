@@ -60,7 +60,15 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               width: size.width,
               height: resultAreaHeight,
-              child: Text("所持金 : $havingMoney円"),
+              child: Text(
+                "所持金 : $havingMoney円",
+                style: TextStyle(
+                  decoration: TextDecoration.underline,
+                  fontWeight: FontWeight.w800,
+                  fontSize: 40,
+                ),
+              ),
+              alignment: Alignment.center,
             ),
             Container(
               width: size.width,
