@@ -71,7 +71,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   return Container(
                     decoration: new BoxDecoration(
                       border: new Border(
-                        bottom: new BorderSide(color: Colors.black, width: 2.0),
+                        top: new BorderSide(color: Colors.black, width: 1.0),
+                        bottom: new BorderSide(color: Colors.black, width: 1.0),
                       ),
                     ),
                     child: ListTile(
