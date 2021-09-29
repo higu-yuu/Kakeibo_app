@@ -36,23 +36,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final items = List<String>.generate(12, (i) => "2021年 ${i + 1}月");
   int havingMoney = 0;
-  bool _initialized = false;
-  bool _error = false;
-
-  void initializeFlutterFire() async {
-    try {
-      // Wait for Firebase to initialize and set `_initialized` state to true
-      await Firebase.initializeApp();
-      setState(() {
-        _initialized = true;
-      });
-    } catch (e) {
-      // Set `_error` state to true if Firebase initialization fails
-      setState(() {
-        _error = true;
-      });
-    }
-  }
 
   Future<void> getSaving() async {
     var saving_json = await FirebaseFirestore.instance
@@ -67,7 +50,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    // initializeFlutterFire();
     super.initState();
     getSaving();
   }
