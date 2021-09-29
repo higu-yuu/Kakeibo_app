@@ -5,11 +5,10 @@ import 'month.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(Month());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -37,6 +36,41 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final items = List<String>.generate(12, (i) => "2021年 ${i + 1}月");
   int havingMoney = 0;
+  bool _initialized = false;
+  bool _error = false;
+
+  void initializeFlutterFire() async {
+    try {
+      // Wait for Firebase to initialize and set `_initialized` state to true
+      await Firebase.initializeApp();
+      setState(() {
+        _initialized = true;
+      });
+    } catch (e) {
+      // Set `_error` state to true if Firebase initialization fails
+      setState(() {
+        _error = true;
+      });
+    }
+  }
+
+  Future<void> getSaving() async {
+    var saving_json = await FirebaseFirestore.instance
+        .collection('Savings')
+        .doc('Savings')
+        .get();
+    print(saving_json['savings']);
+    setState(() {
+      havingMoney = saving_json['savings'];
+    });
+  }
+
+  @override
+  void initState() {
+    // initializeFlutterFire();
+    super.initState();
+    getSaving();
+  }
 
   @override
   Widget build(BuildContext context) {
