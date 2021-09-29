@@ -49,7 +49,6 @@ class _MonthPageState extends State<MonthPage> {
                     // Firebase.initializeApp();
                     await FirebaseFirestore.instance
                         .collection('test_collection')
-                        // .document()
                         .doc('test_collection')
                         .set({
                       'name': 'kato',
