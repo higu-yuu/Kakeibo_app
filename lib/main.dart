@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
-import 'month.dart';
+import 'month_event.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -22,15 +22,6 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(title: 'マネマネ&イベント'),
     );
   }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -108,6 +99,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: ListTile(
                       title: Text('${items[index]}'),
                       trailing: Icon(Icons.arrow_forward_ios),
+                      onTap: () {
+                        Navigator.push(
+                          context, MaterialPageRoute(builder: (context) => Month('${items[index]}')),
+                        );
+                      },
                     ),
                   );
                 },
@@ -118,4 +114,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
 }
