@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/cupertino.dart';
+import 'dart:io';
+import 'add_event_page.dart';
+import 'month_event.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AddEvent extends StatelessWidget {
   String name;
@@ -42,12 +48,27 @@ class _AddEventState extends State<AddEventPage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final padding = MediaQuery.of(context).padding;
+    var maxHeight = size.height - padding.top - padding.bottom;
+
+    // アプリ描画エリアの縦サイズを取得
+    if (Platform.isAndroid) {
+      maxHeight = size.height - padding.top - kToolbarHeight;
+    } else if (Platform.isIOS) {
+      maxHeight = size.height - padding.top - padding.bottom - 22;
+    }
+
+    // Resultエリアの縦サイズ
+    final resultAreaHeight = maxHeight * (10 / 100);
+    // テンキーエリアの縦サイズ
+    final tenkeyAreaHeight = maxHeight * (90 / 100);
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
       body: Container(
-        child: Row(
+        child: Column(
           children: [
             Text('タイトル'),
             TextField(),

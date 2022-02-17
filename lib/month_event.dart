@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
+import 'add_event_page.dart';
 import 'month_event.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -102,7 +103,10 @@ class _MonthEventState extends State<MonthEvent> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddEvent('日程追加')),
+          );
         },
         tooltip: 'addDate',
         child: Icon(Icons.add),
