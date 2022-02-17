@@ -32,9 +32,7 @@ class _MonthEventState extends State<MonthEvent> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Container(
-
-      ),
+      body: Container(),
     );
   }
 }
