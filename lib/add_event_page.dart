@@ -49,7 +49,9 @@ class _AddEventState extends State<AddEventPage> {
       body: Container(
         child: Row(
           children: [
+            Text('タイトル'),
             TextField(),
+            Text('金額'),
             TextField(
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
@@ -58,7 +60,9 @@ class _AddEventState extends State<AddEventPage> {
             new RaisedButton(
               onPressed: () => _selectDate(context),
               child: new Text('日付選択'),
-            )
+            ),
+            Text('詳細'),
+            TextField(),
           ],
         ),
       ),
