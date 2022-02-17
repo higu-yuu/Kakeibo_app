@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final items = List<String>.generate(12, (i) => "2021年 ${i + 1}月");
+  final items = List<String>.generate(12, (i) => "2022年 ${i + 1}月");
   int havingMoney = 0;
 
   Future<void> getSaving() async {
